@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import ExpenseInput from './components/ExpenseInput';
 import ExpenseDashboard from './components/ExpenseDashboard';
-import { differenceInDays, startOfMonth, endOfMonth } from 'date-fns';
 
 function App() {
   const [lists, setLists] = useState([{ name: 'List 1', expenses: [] }]);
@@ -62,7 +61,7 @@ function App() {
 
   const getMultiplier = (expenseFrequency, selectedFrequency) => {
     const daysInYear = 365;
-    const daysInMonth = differenceInDays(endOfMonth(new Date()), startOfMonth(new Date())) + 1;
+    const daysInMonth = 30;
     const weeksInYear = 52;
     const weeksInMonth = 4;
     const daysInWeek = 7;
