@@ -106,8 +106,8 @@ function App() {
   }, 0);
 
   return (
-    <div className="container">
-      <h1 className="text-4xl font-bold mb-4 text-center">EXPENSES</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <h1 className="text-4xl font-bold mb-4 text-white">EXPENSES</h1>
       <ExpenseInput onAddExpense={addExpense} />
       <div className="flex items-center mt-4">
         {currentListIndex > 0 && (
@@ -128,7 +128,7 @@ function App() {
           />
         ) : (
           <h2
-            className="text-2xl font-semibold cursor-pointer"
+            className="text-2xl font-semibold cursor-pointer text-white"
             onClick={() => setIsEditing(true)}
           >
             {lists[currentListIndex].name}
@@ -154,7 +154,7 @@ function App() {
         onEditExpense={handleEditExpense}
         onDeleteExpense={handleDeleteExpense}
       />
-      <div className="expense-list fixed bottom-0 left-0 p-4 bg-white shadow-lg w-full md:w-1/4">
+      <div className="fixed bottom-0 left-0 p-4 bg-white shadow-lg w-full md:w-1/4">
         <h3 className="text-xl font-bold mb-2">Expense Lists</h3>
         <select
           value={view}
@@ -172,7 +172,7 @@ function App() {
             </li>
           ))}
         </ul>
-        <div className="total mt-4 border-t pt-2">
+        <div className="mt-4 border-t pt-2">
           <h4 className="text-lg font-bold">Total Expenses ({view})</h4>
           <p>{combinedTotalExpenses.toFixed(2)} USD</p>
         </div>
