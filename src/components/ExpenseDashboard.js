@@ -1,6 +1,3 @@
-import React, { useState } from 'react';
-import ExpenseEntry from './ExpenseEntry';
-
 function ExpenseDashboard({ expenses }) {
   const [currency, setCurrency] = useState('USD');
   const [frequency, setFrequency] = useState('Monthly');
@@ -23,20 +20,26 @@ function ExpenseDashboard({ expenses }) {
     const daysInMonth = 30; // Simplified, you can use a library like date-fns for accurate days
     const weeksInMonth = 4;
     const daysInWeek = 7;
+    const monthsInYear = 12;
 
     switch (selectedFrequency) {
       case 'Monthly':
         if (expenseFrequency === 'Daily') return daysInMonth;
         if (expenseFrequency === 'Bi-weekly') return weeksInMonth / 2;
         if (expenseFrequency === 'Weekly') return weeksInMonth;
+        if (expenseFrequency === 'Annual') return 1 / monthsInYear;
+        return 1;
+      case 'Yearly':
+        if (expenseFrequency === 'Daily') return daysInMonth * monthsInYear;
+        if (expenseFrequency === 'Bi-weekly') return (weeksInMonth / 2) * monthsInYear;
+        if (expenseFrequency === 'Weekly') return weeksInMonth * monthsInYear;
+        if (expenseFrequency === 'Monthly') return monthsInYear;
         return 1;
       case 'Weekly':
         if (expenseFrequency === 'Daily') return daysInWeek;
         if (expenseFrequency === 'Bi-weekly') return 0.5;
         return 1;
       case 'Daily':
-        return 1;
-      case 'Annual':
         return 1;
       default:
         return 1;
