@@ -40,7 +40,7 @@ function ExpenseInput({ onAddExpense }) {
         value={input}
         onChange={handleInputChange}
         className="border p-2 mb-4 w-full shadow-lg"
-        placeholder="Enter expense (e.g., 150 THB)"
+        placeholder="Enter expense (e.g., Chocolate 150 THB/usd/$/gbp/ausd)"
       />
       <select
         value={frequency}
