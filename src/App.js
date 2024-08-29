@@ -59,11 +59,45 @@ function App() {
     }
   };
 
+  const getMultiplier = (expenseFrequency, selectedFrequency) => {
+    const daysInYear = 365;
+    const daysInMonth = 30;
+    const weeksInYear = 52;
+    const weeksInMonth = 4;
+    const daysInWeek = 7;
+    const monthsInYear = 12;
+
+    switch (selectedFrequency) {
+      case 'Monthly':
+        if (expenseFrequency === 'Daily') return daysInMonth;
+        if (expenseFrequency === 'Bi-weekly') return weeksInMonth / 2;
+        if (expenseFrequency === 'Weekly') return weeksInMonth;
+        if (expenseFrequency === 'Annual') return 1 / monthsInYear;
+        return 1;
+      case 'Yearly':
+        if (expenseFrequency === 'Daily') return daysInYear;
+        if (expenseFrequency === 'Bi-weekly') return weeksInYear / 2;
+        if (expenseFrequency === 'Weekly') return weeksInYear;
+        if (expenseFrequency === 'Monthly') return monthsInYear;
+        if (expenseFrequency === 'Annual') return 1;
+        return 1;
+      case 'Weekly':
+        if (expenseFrequency === 'Daily') return daysInWeek;
+        if (expenseFrequency === 'Bi-weekly') return 0.5;
+        return 1;
+      case 'Daily':
+        return 1;
+      default:
+        return 1;
+    }
+  };
+
   const calculateTotalExpenses = (expenses, currency, view) => {
     return expenses.reduce((total, expense) => {
       const fromRate = conversionRates[expense.currency] || 1;
       const toRate = conversionRates[currency] || 1;
-      return total + (expense.amount / fromRate) * toRate;
+      const multiplier = getMultiplier(expense.frequency, view);
+      return total + (expense.amount * multiplier / fromRate) * toRate;
     }, 0);
   };
 
