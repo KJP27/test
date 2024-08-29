@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import ExpenseEntry from './ExpenseEntry';
+
 function ExpenseDashboard({ expenses }) {
   const [currency, setCurrency] = useState('USD');
   const [frequency, setFrequency] = useState('Monthly');
@@ -36,6 +39,7 @@ function ExpenseDashboard({ expenses }) {
         if (expenseFrequency === 'Bi-weekly') return weeksInYear / 2;
         if (expenseFrequency === 'Weekly') return weeksInYear;
         if (expenseFrequency === 'Monthly') return monthsInYear;
+        if (expenseFrequency === 'Annual') return 1;
         return 1;
       case 'Weekly':
         if (expenseFrequency === 'Daily') return daysInWeek;
