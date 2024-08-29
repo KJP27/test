@@ -17,7 +17,9 @@ function ExpenseDashboard({ expenses }) {
   };
 
   const getMultiplier = (expenseFrequency, selectedFrequency) => {
+    const daysInYear = 365;
     const daysInMonth = 30; // Simplified, you can use a library like date-fns for accurate days
+    const weeksInYear = 52;
     const weeksInMonth = 4;
     const daysInWeek = 7;
     const monthsInYear = 12;
@@ -30,9 +32,9 @@ function ExpenseDashboard({ expenses }) {
         if (expenseFrequency === 'Annual') return 1 / monthsInYear;
         return 1;
       case 'Yearly':
-        if (expenseFrequency === 'Daily') return daysInMonth * monthsInYear;
-        if (expenseFrequency === 'Bi-weekly') return (weeksInMonth / 2) * monthsInYear;
-        if (expenseFrequency === 'Weekly') return weeksInMonth * monthsInYear;
+        if (expenseFrequency === 'Daily') return daysInYear;
+        if (expenseFrequency === 'Bi-weekly') return weeksInYear / 2;
+        if (expenseFrequency === 'Weekly') return weeksInYear;
         if (expenseFrequency === 'Monthly') return monthsInYear;
         return 1;
       case 'Weekly':
