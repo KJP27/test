@@ -34,6 +34,14 @@ function ExpenseDashboard({ expenses, onEditExpense, onDeleteExpense }) {
         if (expenseFrequency === 'Weekly') return weeksInMonth;
         if (expenseFrequency === 'Annual') return 1 / monthsInYear;
         return 1;
+      case 'Annual':
+        if (expenseFrequency === 'Daily') return daysInYear;
+        if (expenseFrequency === 'Bi-weekly') return weeksInYear / 2;
+        if (expenseFrequency === 'Weekly') return weeksInYear;
+        if (expenseFrequency === 'Monthly') return monthsInYear;
+        if (expenseFrequency === 'Annual') return 1;
+        if (expenseFrequency === 'Annual') return 1 / monthsInYear;
+        return 1;
       case 'Yearly':
         if (expenseFrequency === 'Daily') return daysInYear;
         if (expenseFrequency === 'Bi-weekly') return weeksInYear / 2;
@@ -104,6 +112,7 @@ function ExpenseDashboard({ expenses, onEditExpense, onDeleteExpense }) {
             frequency={expense.frequency}
             onEdit={() => onEditExpense(index, expense)}
             onDelete={() => onDeleteExpense(index)}
+         
           />
         ))}
       </div>
