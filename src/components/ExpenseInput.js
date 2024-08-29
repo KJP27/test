@@ -41,11 +41,13 @@ function ExpenseInput({ onAddExpense }) {
         onChange={handleInputChange}
         className="border p-2 mb-4 w-full shadow-lg"
         placeholder="Enter expense (e.g., Chocolate 150 THB/usd/$/gbp/ausd)"
+        aria-label="Expense description and amount"
       />
       <select
         value={frequency}
         onChange={(e) => setFrequency(e.target.value)}
         className="border p-2 w-full mb-4 shadow-lg"
+        aria-label="Expense frequency"
       >
         <option>Single payment</option>
         <option>Annual</option>
@@ -57,6 +59,7 @@ function ExpenseInput({ onAddExpense }) {
       <button
         onClick={handleAddExpense}
         className="bg-blue-500 text-white p-2 rounded shadow-lg"
+        aria-label="Add expense"
       >
         Add Expense
       </button>
