@@ -23,6 +23,18 @@ function App() {
     setLists(newLists);
   };
 
+  const handleEditExpense = (index, updatedExpense) => {
+    const newLists = [...lists];
+    newLists[currentListIndex].expenses[index] = updatedExpense;
+    setLists(newLists);
+  };
+
+  const handleDeleteExpense = (index) => {
+    const newLists = [...lists];
+    newLists[currentListIndex].expenses.splice(index, 1);
+    setLists(newLists);
+  };
+
   const addNewList = () => {
     const newListName = `List ${lists.length + 1}`;
     setLists([...lists, { name: newListName, expenses: [] }]);
@@ -47,36 +59,11 @@ function App() {
     }
   };
 
-  const getMultiplier = (expenseFrequency, selectedFrequency) => {
-    const daysInMonth = 30; // Simplified, you can use a library like date-fns for accurate days
-    const weeksInMonth = 4;
-    const daysInWeek = 7;
-    const monthsInYear = 12;
-
-    switch (selectedFrequency) {
-      case 'Monthly':
-        if (expenseFrequency === 'Daily') return daysInMonth;
-        if (expenseFrequency === 'Bi-weekly') return weeksInMonth / 2;
-        if (expenseFrequency === 'Weekly') return weeksInMonth;
-        if (expenseFrequency === 'Annual') return 1 / monthsInYear;
-        return 1;
-      case 'Yearly':
-        if (expenseFrequency === 'Daily') return daysInMonth * monthsInYear;
-        if (expenseFrequency === 'Bi-weekly') return (weeksInMonth / 2) * monthsInYear;
-        if (expenseFrequency === 'Weekly') return weeksInMonth * monthsInYear;
-        if (expenseFrequency === 'Monthly') return monthsInYear;
-        return 1;
-      default:
-        return 1;
-    }
-  };
-
   const calculateTotalExpenses = (expenses, currency, view) => {
     return expenses.reduce((total, expense) => {
-      const multiplier = getMultiplier(expense.frequency, view);
       const fromRate = conversionRates[expense.currency] || 1;
       const toRate = conversionRates[currency] || 1;
-      return total + (expense.amount * multiplier / fromRate) * toRate;
+      return total + (expense.amount / fromRate) * toRate;
     }, 0);
   };
 
@@ -128,7 +115,11 @@ function App() {
           <span className="text-2xl">+</span>
         </button>
       </div>
-      <ExpenseDashboard expenses={lists[currentListIndex].expenses} />
+      <ExpenseDashboard
+        expenses={lists[currentListIndex].expenses}
+        onEditExpense={handleEditExpense}
+        onDeleteExpense={handleDeleteExpense}
+      />
       <div className="fixed bottom-0 left-0 p-4 bg-white shadow-lg w-full md:w-1/4">
         <h3 className="text-xl font-bold mb-2">Expense Lists</h3>
         <select
