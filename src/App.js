@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import ExpenseInput from './components/ExpenseInput';
 import ExpenseDashboard from './components/ExpenseDashboard';
+import { differenceInDays, startOfMonth, endOfMonth } from 'date-fns';
 
 function App() {
   const [lists, setLists] = useState([{ name: 'List 1', expenses: [] }]);
@@ -61,7 +62,7 @@ function App() {
 
   const getMultiplier = (expenseFrequency, selectedFrequency) => {
     const daysInYear = 365;
-    const daysInMonth = 30;
+    const daysInMonth = differenceInDays(endOfMonth(new Date()), startOfMonth(new Date())) + 1;
     const weeksInYear = 52;
     const weeksInMonth = 4;
     const daysInWeek = 7;
@@ -106,8 +107,8 @@ function App() {
   }, 0);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-4xl font-bold mb-4 text-white">EXPENSES</h1>
+    <div className="container">
+      <h1 className="text-4xl font-bold mb-4 text-center">EXPENSES</h1>
       <ExpenseInput onAddExpense={addExpense} />
       <div className="flex items-center mt-4">
         {currentListIndex > 0 && (
@@ -128,7 +129,7 @@ function App() {
           />
         ) : (
           <h2
-            className="text-2xl font-semibold cursor-pointer text-white"
+            className="text-2xl font-semibold cursor-pointer"
             onClick={() => setIsEditing(true)}
           >
             {lists[currentListIndex].name}
@@ -154,7 +155,7 @@ function App() {
         onEditExpense={handleEditExpense}
         onDeleteExpense={handleDeleteExpense}
       />
-      <div className="fixed bottom-0 left-0 p-4 bg-white shadow-lg w-full md:w-1/4">
+      <div className="expense-list fixed bottom-0 left-0 p-4 bg-white shadow-lg w-full md:w-1/4">
         <h3 className="text-xl font-bold mb-2">Expense Lists</h3>
         <select
           value={view}
@@ -172,7 +173,7 @@ function App() {
             </li>
           ))}
         </ul>
-        <div className="mt-4 border-t pt-2">
+        <div className="total mt-4 border-t pt-2">
           <h4 className="text-lg font-bold">Total Expenses ({view})</h4>
           <p>{combinedTotalExpenses.toFixed(2)} USD</p>
         </div>
