@@ -74,7 +74,7 @@ function App() {
         if (expenseFrequency === 'Weekly') return weeksInMonth;
         if (expenseFrequency === 'Annual') return 1 / monthsInYear;
         return 1;
-      case 'Yearly':
+      case 'Annual':
         if (expenseFrequency === 'Daily') return daysInYear;
         if (expenseFrequency === 'Bi-weekly') return weeksInYear / 2;
         if (expenseFrequency === 'Weekly') return weeksInYear;
