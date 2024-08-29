@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to bottom, #d0e7f9, #9fdcfa, #87cefa, #4682b4);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+button {
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+select, input {
+  transition: all 0.3s ease;
+}
+
+select:focus, input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 8px rgba(8, 27, 49, 0.5);
+}
+
+.expense-list {
+  margin-top: 20px;
+}
+
+.expense-list h3 {
+  margin-bottom: 10px;
+}
+
+.expense-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.expense-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.expense-list li:last-child {
+  border-bottom: none;
+}
+
+.expense-list .total {
+  font-weight: bold;
+  margin-top: 10px;
 }
