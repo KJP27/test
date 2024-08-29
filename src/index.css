@@ -2,30 +2,33 @@
 html, body, #root {
   height: 100%;
   margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(to bottom, #d0e7f9, #9fdcfa, #87cefa, #4682b4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  color: #000000;
+  margin-bottom: 20px;
 }
-
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
 
 button {
-  transition: transform 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  background-color: #0056b3;
 }
 
 select, input {
@@ -35,11 +38,5 @@ select, input {
 select:focus, input:focus {
   outline: none;
   border-color: #000000;
-  box-shadow: 2 2 8px rgba(8, 27, 49, 0.5);
-}
-
-h1 {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900;
-  color: #000000 ;
+  box-shadow: 0 0 8px rgba(8, 27, 49, 0.5);
 }
