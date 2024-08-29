@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ExpenseEntry from './ExpenseEntry';
 
-function ExpenseDashboard({ expenses }) {
+function ExpenseDashboard({ expenses, onEditExpense, onDeleteExpense }) {
   const [currency, setCurrency] = useState('USD');
   const [frequency, setFrequency] = useState('Monthly');
 
@@ -102,8 +102,8 @@ function ExpenseDashboard({ expenses }) {
             amount={convertCurrency(expense.amount * getMultiplier(expense.frequency, frequency), expense.currency, currency).toFixed(2)}
             currency={currency}
             frequency={expense.frequency}
-            onEdit={() => {}}
-            onDelete={() => {}}
+            onEdit={() => onEditExpense(index, expense)}
+            onDelete={() => onDeleteExpense(index)}
           />
         ))}
       </div>
