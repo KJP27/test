@@ -41,5 +41,5 @@ select:focus, input:focus {
 h1 {
   font-family: 'Nunito', sans-serif;
   font-weight: 900;
-  color: rgb(0, 0, 0);
+  color: #000000 ;
 }
